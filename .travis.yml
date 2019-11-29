@@ -5,5 +5,5 @@ cache:
   directories:
     - "node_modules"
 script:
-  - docker build -t imthekrish/deploy-hapi-hello-world
+  - docker build -t imthekrish/deploy-hapi-hello-world .
   - docker run --name deploy-hapi-hello-world -p 80:3000 -d imthekrish/deploy-hapi-hello-world
