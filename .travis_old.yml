@@ -1,0 +1,20 @@
+language: node_js
+node_js:
+  - "stable"
+cache:
+  directories:
+    - "node_modules"
+script:
+  - npm test
+  #- docker build -t imthekrish/deploy-hapi-hello-world .
+  #- docker run --name deploy-hapi-hello-world -p 18.222.119.132:80:3000 -d imthekrish/deploy-hapi-hello-world
+  #- docker ps
+  #- docker images -a
+
+deploy:
+  provider: pages
+  skip-cleanup: true
+  github-token: $GIT_TOKEN
+  local_dir: build
+  on:
+    branch: master

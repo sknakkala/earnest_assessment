@@ -1,12 +1,17 @@
 language: node_js
 node_js:
-  - "stable"
+- stable
 cache:
   directories:
-    - "node_modules"
+  - node_modules
+before_install:
+- openssl aes-256-cbc -K $encrypted_33d3b02f2ff4_key -iv $encrypted_33d3b02f2ff4_iv
+  -in deploy_key.enc -out ./deploy_key -d
+- eval "$(ssh-agent -s)"
+- chmod 600 ./deploy_key
+- echo -e "Host $SERVER_IP_ADDRESS\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
+- ssh-add ./deploy_key
+- ssh -i ./deploy_key cloud_user@3.135.246.229 pwd
 script:
-  - npm test
-  - docker build -t imthekrish/deploy-hapi-hello-world .
-  - docker run --name deploy-hapi-hello-world -p 18.222.119.132:80:3000 -d imthekrish/deploy-hapi-hello-world
-  - docker ps
-  - docker images -a
+- sudo ocker build -t imthekrish/deploy-hapi-hello-world
+- sudo docker run --name deploy-hapi-hello-world -p 80:3000 -d imthekrish/deploy-hapi-hello-world
