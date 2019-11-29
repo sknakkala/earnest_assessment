@@ -11,7 +11,7 @@ before_install:
 - chmod 600 ./deploy_key
 - echo -e "Host $SERVER_IP_ADDRESS\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
 - ssh-add ./deploy_key
-- ssh -i ./deploy_key cloud_user@3.135.246.229 pwd
+- ssh -i ./deploy_key -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no cloud_user@3.135.246.229 pwd
 script:
 - sudo ocker build -t imthekrish/deploy-hapi-hello-world
 - sudo docker run --name deploy-hapi-hello-world -p 80:3000 -d imthekrish/deploy-hapi-hello-world
