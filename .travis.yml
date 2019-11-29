@@ -8,3 +8,5 @@ script:
   - npm test
   - docker build -t imthekrish/deploy-hapi-hello-world .
   - docker run --name deploy-hapi-hello-world -p 18.222.119.132:80:3000 -d imthekrish/deploy-hapi-hello-world
+  - docker ps
+  - docker images -a
