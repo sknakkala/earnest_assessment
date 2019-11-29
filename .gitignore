@@ -1,3 +1,4 @@
 Webstorm IDE generated stuff
 .idea/*
 deploy_key
+.travis_old.yml
