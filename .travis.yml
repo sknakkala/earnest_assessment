@@ -25,6 +25,5 @@ deploy:
  skip_cleanup: true
  script: chmod 600 deploy_key && ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -o ConnectTimeout=300 -i ./deploy_key
    docker@18.219.94.243 './deploy.sh'
- local_dir: build
  on:
    branch: docker-user-branch
