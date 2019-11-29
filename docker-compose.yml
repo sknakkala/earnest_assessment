@@ -1,0 +1,6 @@
+version: '2'
+services:
+ app:
+   image: imthekrish/deploy-hapi-hello-world:production
+   ports: 
+     - 80:3000
